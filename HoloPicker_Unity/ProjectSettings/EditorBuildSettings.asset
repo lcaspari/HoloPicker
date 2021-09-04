@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HoloPicker.unity
+    guid: cbc3dc604bacf7d4db59032c6729107f
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7b70c4bf4fca6334aa7c95ee29a3c89b, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 3c27daacbd2383140b0f4e6a50fe090c, type: 2}
