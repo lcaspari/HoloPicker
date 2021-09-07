@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+/.idea.HoloPicker_Unity.iml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Users\marle\Documents\HoloPicker\HoloPicker_Unity\.idea\.idea.HoloPicker_Unity\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
