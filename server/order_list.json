@@ -1,0 +1,56 @@
+{
+    "orderItem": [
+        {
+            "orderItem":[
+                {
+                    "order": "place",
+                    "quantity": 1,
+                    "id":"001",
+                    "name":"Nietsche: Also sprach Zarathustra",
+                    "category":"book",
+                    "location":[
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "order": "place",
+                    "quantity": 3,
+                    "id":"002",
+                    "name":"Paulaner Spezi",
+                    "category":"drink",
+                    "location":[
+                        1,
+                        2,
+                        1
+                    ]
+                },
+                {
+                    "order": "place",
+                    "quantity": 1,
+                    "id":"003",
+                    "name":"Google Pixel 4a",
+                    "category":"smartphone",
+                    "location":[
+                        1,
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "order": "pick",
+                    "quantity": 2,
+                    "id":"002",
+                    "name":"Paulaner Spezi",
+                    "category":"drink",
+                    "location":[
+                        1,
+                        2,
+                        1
+                    ]
+                }
+            ]
+        }
+    ]
+}
