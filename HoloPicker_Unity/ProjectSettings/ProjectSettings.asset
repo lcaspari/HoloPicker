@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 22
-  productGUID: 70be4c6e45793664b9b0fef2f26a4004
+  productGUID: 722e699909ebf104e8eeed990dd22fcc
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -610,11 +610,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: HoloPicker
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 809562ef84c5d801
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: HoloPicker_Unity
@@ -634,7 +634,6 @@ PlayerSettings:
       GazeInput: True
       SpatialPerception: True
       InternetClient: True
-      WebCam: True
       Microphone: True
   metroTargetDeviceFamilies: {}
   metroFTAName: 
@@ -682,7 +681,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
