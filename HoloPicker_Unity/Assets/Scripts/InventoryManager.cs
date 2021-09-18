@@ -94,20 +94,19 @@ public class InventoryManager : MonoBehaviour
 
     string readJSONfromURL(string url)
     {
-        return new WebClient().DownloadString(url);
+        // Download latest version of the string
+        return new WebClient().DownloadString(url + "/latest");
     }
 
     void writeJSONtoURL(string url, string data)
     {
         WebClient client = new WebClient();
-        //string json = Newtonsoft.Json.JsonConvert.SerializeObject(items);
-        //client.Headers[HttpRequestHeader.ContentType] = "application/json";
-        //client.UploadValues("/api/example", "POST", json);
-
-        var dataString = Newtonsoft.Json.JsonConvert.SerializeObject(data);
-        client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-        client.UploadString(url, "POST", data);
-
+        // Add the content type and the key to the head, so webclient knows which bin to use
+        client.Headers.Add("Content-Type", "application/json");
+        client.Headers.Add("X-Master-Key", "$2b$10$7XBSMFNLrINX/pZ7qH1J3evt.HcS.47jSOr.pzIVqZEFnPzYfBCEa");
+        // Upload new data
+        client.UploadString(url, "PUT", data);
+        
     }
 
     void updateDatabase(OrderItem curItem, InventoryItem newItem)
@@ -147,7 +146,7 @@ public class InventoryManager : MonoBehaviour
         File.WriteAllText(Application.dataPath + "/Database/inventory.json", newInventory);
         string newOrderList = JsonUtility.ToJson(order, true);
         File.WriteAllText(Application.dataPath + "/Database/order_list.json", newOrderList);
-        // Upload also to the internet (DOES NOT WORK)
-        //writeJSONtoURL(url, newOrderList);
+        // Upload also to the internet
+        writeJSONtoURL(url, newOrderList);
     }
 }
