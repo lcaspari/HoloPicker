@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -671,6 +671,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3864793685903309806, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9562512}
+    - target: {fileID: 3864793685903309806, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InstantiateFrame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864793685903309806, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlaceOnSpace, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4094684585208479604, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
       propertyPath: iconStyle
       value: 0
@@ -961,7 +973,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434327648}
-  m_LocalRotation: {x: -0, y: 0.7297426, z: -0, w: 0.6837221}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
