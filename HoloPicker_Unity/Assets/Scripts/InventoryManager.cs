@@ -9,6 +9,9 @@ using System.Net;
 public class InventoryManager : MonoBehaviour
 {
 
+    // Variables for the Order process
+    public bool done = false;
+
     public TextAsset orderList;
     public TextAsset inventoryList;
 
@@ -72,23 +75,24 @@ public class InventoryManager : MonoBehaviour
     void Update()
     {
 
-        //Debug.Log("ITEM: " + order.item[0].id);
-        // User finishes one order item
-        if (Input.GetKeyDown(KeyCode.Return))
+    }
+
+    // This operation takes the next item from the list and operates on the database and the frames to make a pick/place process
+    // Is called when the user has started the order Process or finished the last item (by the OrderMenu)
+    public void processItem()
+    {
+        if (order.orderItem.Count > 0)
         {
-            if (order.orderItem.Count > 0)
-            {
-                OrderItem curItem = order.orderItem[0];
-                // Convert order item into inventory Item by adopting the values of the current item
-                InventoryItem newItem = new InventoryItem();
-                newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
-                // update the orderlist and the inventory
-                updateDatabase(curItem, newItem);
-            } else
-            {
-                Debug.Log("Order List does not contain items");
-            }
-            
+            OrderItem curItem = order.orderItem[0];
+            // Convert order item into inventory Item by adopting the values of the current item
+            InventoryItem newItem = new InventoryItem();
+            newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
+            // update the orderlist and the inventory
+            updateDatabase(curItem, newItem);
+        }
+        else
+        {
+            Debug.Log("Order List does not contain items");
         }
     }
 
