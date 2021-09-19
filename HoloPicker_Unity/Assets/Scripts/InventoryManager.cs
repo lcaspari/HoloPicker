@@ -110,7 +110,6 @@ public class InventoryManager : MonoBehaviour
         client.Headers.Add("X-Master-Key", "$2b$10$7XBSMFNLrINX/pZ7qH1J3evt.HcS.47jSOr.pzIVqZEFnPzYfBCEa");
         // Upload new data
         client.UploadString(url, "PUT", data);
-        
     }
 
     void updateDatabase(OrderItem curItem, InventoryItem newItem)
