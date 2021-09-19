@@ -80,7 +80,7 @@ public class InventoryManager : MonoBehaviour
     // This operation takes the next item from the list and operates on the database and the frames to make a pick/place process
     // Is called when the user has started the order Process or finished the last item (by the OrderMenu)
 
-
+    public PlaceOnSpace _placeOnSpace;
     bool first = true;
     public void processItem()
     {
@@ -96,13 +96,15 @@ public class InventoryManager : MonoBehaviour
             // update the orderlist and the inventory
             updateDatabase(curItem, newItem);
 
-            GameObject.Find(curItem.location.ToString()).SetActive(true);
-
+            string FrameName = curItem.location.ToString();
+            _placeOnSpace.ActivateFrame(FrameName);
         }
         else if (order.orderItem.Count > 0 && first == true)
         {
             OrderItem curItem = order.orderItem[0];
-            GameObject.Find(curItem.location.ToString()).SetActive(true);
+            string FrameName = curItem.location.ToString();
+            _placeOnSpace.ActivateFrame(FrameName);
+
             first = false;
         }
         else

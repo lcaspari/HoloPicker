@@ -43,8 +43,16 @@ public class PlaceOnSpace : MonoBehaviour
         foreach (GameObject obj in frames) 
         {
             obj.SetActive(false);
-            Debug.LogWarning("ProcessOrderStarted was called");
         }
 
     }
+    public GameObject _frameManager;
+    public void ActivateFrame(string name)
+    {
+        _frameManager.transform.Find(name).gameObject.SetActive(true);
+        
+        
+    }
+
+     
 }
