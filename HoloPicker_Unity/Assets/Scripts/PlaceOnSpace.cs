@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class PlaceOnSpace : MonoBehaviour
 {
-    // Update is called once per frame
+    
     public GameObject frame;
+    // to store last instantiated gameObject
+    GameObject track;
+    // to name the object
+    TouchScreenKeyboard keyboard;
+    public static string keyboardText = "";
 
-
+    // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(keyboardText);
     }
 
     public void InstantiateFrame()
     {
-        Instantiate(frame);
+        track = Instantiate(frame, transform);  
+    }
+
+    public void NameFrame()
+    {
+        //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad);
+        //keyboardText = keyboard.text;
+        track.name = "001";
+        
     }
 }
