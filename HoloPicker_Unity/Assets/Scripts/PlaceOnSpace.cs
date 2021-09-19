@@ -10,10 +10,11 @@ public class PlaceOnSpace : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(frame);
 
-        }
+    }
+
+    public void InstantiateFrame()
+    {
+        Instantiate(frame);
     }
 }
