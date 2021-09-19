@@ -79,16 +79,31 @@ public class InventoryManager : MonoBehaviour
 
     // This operation takes the next item from the list and operates on the database and the frames to make a pick/place process
     // Is called when the user has started the order Process or finished the last item (by the OrderMenu)
+
+
+    bool first = true;
     public void processItem()
     {
-        if (order.orderItem.Count > 0)
+
+
+        if (order.orderItem.Count > 0 && first == false)
         {
+
             OrderItem curItem = order.orderItem[0];
             // Convert order item into inventory Item by adopting the values of the current item
             InventoryItem newItem = new InventoryItem();
             newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
             // update the orderlist and the inventory
             updateDatabase(curItem, newItem);
+
+            GameObject.Find(curItem.location.ToString()).SetActive(true);
+
+        }
+        else if (order.orderItem.Count > 0 && first == true)
+        {
+            OrderItem curItem = order.orderItem[0];
+            GameObject.Find(curItem.location.ToString()).SetActive(true);
+            first = false;
         }
         else
         {
