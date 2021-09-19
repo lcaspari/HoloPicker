@@ -15,7 +15,6 @@ public class PlaceOnSpace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(keyboardText);
     }
 
     public void InstantiateFrame()
@@ -33,5 +32,19 @@ public class PlaceOnSpace : MonoBehaviour
         
         track.name = number.ToString();
         number++;
+    }
+
+    GameObject[] frames;
+    GameObject obj;
+    public void ProcessOrderStarted()
+    {
+        frames = GameObject.FindGameObjectsWithTag("Frame");
+
+        foreach (GameObject obj in frames) 
+        {
+            obj.SetActive(false);
+            Debug.LogWarning("ProcessOrderStarted was called");
+        }
+
     }
 }
