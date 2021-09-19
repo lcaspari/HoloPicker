@@ -20,14 +20,18 @@ public class PlaceOnSpace : MonoBehaviour
 
     public void InstantiateFrame()
     {
-        track = Instantiate(frame, transform);  
+        track = Instantiate(frame, transform);
+        track.SetActive(true);
     }
 
+
+    int number = 1;
     public void NameFrame()
     {
         //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad);
         //keyboardText = keyboard.text;
-        track.name = "001";
         
+        track.name = number.ToString();
+        number++;
     }
 }
