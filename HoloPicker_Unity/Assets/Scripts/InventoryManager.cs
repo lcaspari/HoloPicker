@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour
         public string id;
         public string name;
         public string category;
-        public int[] location;
+        public int location;
     }
 
     [System.Serializable]
@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
         public string id;
         public string name;
         public string category;
-        public int[] location;
+        public int location;
     }
 
     [System.Serializable]
@@ -124,7 +124,7 @@ public class InventoryManager : MonoBehaviour
                 // Search for element in enventory list with same id and location as current item in order list
                 InventoryItem result = inventory.inventoryItem.Find(x => (
                 x.id == newItem.id &&
-                x.location[0] == newItem.location[0] && x.location[1] == newItem.location[1] && x.location[2] == newItem.location[2])
+                x.location == newItem.location)
                 );
                 // Delete Item from inventory
                 inventory.inventoryItem.Remove(result);
