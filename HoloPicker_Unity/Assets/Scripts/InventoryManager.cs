@@ -81,6 +81,7 @@ public class InventoryManager : MonoBehaviour
     // Is called when the user has started the order Process or finished the last item (by the OrderMenu)
 
     public PlaceOnSpace _placeOnSpace;
+    int _previousFrame;
     bool first = true;
     public void processItem()
     {
@@ -89,27 +90,38 @@ public class InventoryManager : MonoBehaviour
         if (order.orderItem.Count > 0 && first == false)
         {
 
-            OrderItem curItem = order.orderItem[0];
+            OrderItem curItem = order.orderItem[1];
             // Convert order item into inventory Item by adopting the values of the current item
             InventoryItem newItem = new InventoryItem();
             newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
             // update the orderlist and the inventory
             updateDatabase(curItem, newItem);
 
-            string FrameName = curItem.location.ToString();
-            _placeOnSpace.ActivateFrame(FrameName);
+            int FrameName = curItem.location;
+            Debug.LogWarning("Second Frame");
+            _placeOnSpace.ActivateFrame(FrameName-1);
+            _placeOnSpace.DeactivateFrame(_previousFrame-1);
+            _previousFrame = FrameName;
+
         }
         else if (order.orderItem.Count > 0 && first == true)
         {
             OrderItem curItem = order.orderItem[0];
-            string FrameName = curItem.location.ToString();
-            _placeOnSpace.ActivateFrame(FrameName);
-
+            int FrameName1 = curItem.location;
+            Debug.LogWarning("I am the first Frame");
+            _placeOnSpace.ActivateFrame(FrameName1-1);
+            _previousFrame = FrameName1;
             first = false;
         }
         else
         {
             Debug.Log("Order List does not contain items");
+            OrderItem curItem = order.orderItem[-1];
+            int LastFrame = curItem.location;
+            Debug.Log(LastFrame);
+            //_placeOnSpace.DeactivateFrame(LastFrame - 1);
+
+
         }
     }
 
@@ -167,6 +179,6 @@ public class InventoryManager : MonoBehaviour
         string newOrderList = JsonUtility.ToJson(order, true);
         File.WriteAllText(Application.dataPath + "/Database/order_list.json", newOrderList);
         // Upload also to the internet
-        writeJSONtoURL(url, newOrderList);
+        //writeJSONtoURL(url, newOrderList);
     }
 }
