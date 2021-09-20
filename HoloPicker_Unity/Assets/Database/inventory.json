@@ -227,6 +227,24 @@
             "name": "Google Pixel 4a",
             "category": "smartphone",
             "location": 3
+        },
+        {
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
+        },
+        {
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
+        },
+        {
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
         }
     ]
 }
