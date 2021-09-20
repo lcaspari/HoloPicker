@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frame: {fileID: 536445745}
-  _frameManager: {fileID: 9562511}
 --- !u!4 &9562513
 Transform:
   m_ObjectHideFlags: 0
@@ -692,6 +691,10 @@ PrefabInstance:
       propertyPath: onPlacingStopped.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlaceOnSpace, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4756916145691265676, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5242021281305262543, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
       propertyPath: m_Name
       value: Frame
@@ -703,6 +706,18 @@ PrefabInstance:
     - target: {fileID: 5242021281305262543, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
       propertyPath: m_TagString
       value: Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134706144040580193, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
+      propertyPath: autoConstraintSelection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134706144040580193, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
+      propertyPath: selectedConstraints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134706144040580193, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
+      propertyPath: selectedConstraints.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
