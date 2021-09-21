@@ -193,6 +193,6 @@ public class InventoryManager : MonoBehaviour
         string newOrderList = JsonUtility.ToJson(order, true);
         File.WriteAllText(Application.dataPath + "/Database/order_list.json", newOrderList);
         // Upload also to the internet
-        writeJSONtoURL(url, newOrderList);
+        //writeJSONtoURL(url, newOrderList);
     }
 }
