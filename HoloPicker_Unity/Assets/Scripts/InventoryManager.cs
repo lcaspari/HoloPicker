@@ -110,7 +110,6 @@ public class InventoryManager : MonoBehaviour
                 {
                     curItem = order.orderItem[0];
                     int FrameName = curItem.location;
-                    Debug.Log(curItem.name);
                     _placeOnSpace.ActivateFrame(FrameName - 1);
                     _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                     _previousFrame = FrameName;
@@ -193,6 +192,6 @@ public class InventoryManager : MonoBehaviour
         string newOrderList = JsonUtility.ToJson(order, true);
         File.WriteAllText(Application.dataPath + "/Database/order_list.json", newOrderList);
         // Upload also to the internet
-        writeJSONtoURL(url, newOrderList);
+        //writeJSONtoURL(url, newOrderList);
     }
 }

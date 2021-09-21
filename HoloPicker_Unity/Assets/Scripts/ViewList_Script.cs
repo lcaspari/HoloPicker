@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ViewList : MonoBehaviour
+public class ViewList_Script : MonoBehaviour
 {
-
     public InventoryManager inventoryManager;
     public GameObject text;
     private GameObject track;
-    // Start is called before the first frame update
-
+    public ViewList_Text viewList_text;
 
     // Get the order item list from inventory manager
     List<InventoryManager.OrderItem> items = new List<InventoryManager.OrderItem>();
@@ -24,12 +22,17 @@ public class ViewList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void createList()
     {
-        //items.Clear();
+        // Destroy all children, so old list does not show up anymore
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<ViewList_Text>().DestroyClone();
+        }
+
         items = inventoryManager.order.orderItem;
         // Add first line of table
         attributes.Add("ORDER");
@@ -54,6 +57,7 @@ public class ViewList : MonoBehaviour
         foreach (string attribute in attributes)
         {
             track = Instantiate(text, transform);
+            track.tag = "TextInList";
             track.GetComponentInChildren<UnityEngine.UI.Text>().text = attribute;
         }
     }
