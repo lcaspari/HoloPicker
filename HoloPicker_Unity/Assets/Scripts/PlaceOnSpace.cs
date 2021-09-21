@@ -53,25 +53,13 @@ public class PlaceOnSpace : MonoBehaviour
     private GameObject _oldFrame;
     public void ActivateFrame(int name)
     {
-        Debug.LogWarning(name);
-
         _frame = transform.GetChild(name).gameObject;
-        Debug.LogWarning(name);
         _frame.SetActive(true);
-
-        //frame.GetComponent<TapToPlace>().enabled = false;
-        //transform.GetChild(name - 1).GetComponent<BoundsControl>().enabled = false;
-
     }
     public void DeactivateFrame(int name)
     {
-        Debug.LogWarning(name);
-
         _oldFrame = transform.GetChild(name).gameObject;
-        Debug.LogWarning("Deactivate Previous");
-
         _oldFrame.SetActive(false);
-
     }
 
     public void DeactivateComponents()

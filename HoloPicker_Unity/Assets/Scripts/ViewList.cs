@@ -18,7 +18,6 @@ public class ViewList : MonoBehaviour
 
     void Start()
     {
-
         createList();
     }
 
@@ -30,7 +29,7 @@ public class ViewList : MonoBehaviour
 
     public void createList()
     {
-        items.Clear();
+        //items.Clear();
         items = inventoryManager.order.orderItem;
         // Add first line of table
         attributes.Add("ORDER");
@@ -56,7 +55,6 @@ public class ViewList : MonoBehaviour
         {
             track = Instantiate(text, transform);
             track.GetComponentInChildren<UnityEngine.UI.Text>().text = attribute;
-            Debug.Log("NAME: " + track.GetComponentInChildren<UnityEngine.UI.Text>().text);
         }
     }
 }
