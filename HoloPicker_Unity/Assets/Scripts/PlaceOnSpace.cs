@@ -12,6 +12,8 @@ public class PlaceOnSpace : MonoBehaviour
     TouchScreenKeyboard keyboard;
     public static string keyboardText = "";
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -45,7 +47,6 @@ public class PlaceOnSpace : MonoBehaviour
         {
             obj.SetActive(false);
         }
-        //gameObject.GetComponentInChildren.TapToPlace();
 
 
     }
@@ -62,11 +63,7 @@ public class PlaceOnSpace : MonoBehaviour
         _oldFrame.SetActive(false);
     }
 
-    public void DeactivateComponents()
-    {
-        //transform.GetChild(0).GetComponent<>().enabled = false;
-
-    }
+    
 
 
 }
