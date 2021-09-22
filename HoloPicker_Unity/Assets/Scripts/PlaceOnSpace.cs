@@ -12,6 +12,7 @@ public class PlaceOnSpace : MonoBehaviour
     // to name the object
     TouchScreenKeyboard keyboard;
     public static string keyboardText = "";
+    private string input;
 
 
 
@@ -30,8 +31,18 @@ public class PlaceOnSpace : MonoBehaviour
     int number = 1;
     public void NameFrame()
     {
-        //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad);
+        //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
+        //keyboard.active = true;
         //keyboardText = keyboard.text;
+        
+        if (keyboard.active == true)
+        {
+            Debug.Log("It would be open");
+        }
+        else if (keyboard.active == false)
+        {
+            Debug.Log("It would not be open");
+        }
 
         track.name = number.ToString();
         number++;
