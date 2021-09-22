@@ -112,7 +112,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     curItem = order.orderItem[0];
                     int FrameName = curItem.location;
-                    _placeOnSpace.ActivateFrame(FrameName - 1);
+                    _placeOnSpace.ActivateFrame(FrameName - 1, curItem.order);
                     _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                     _previousFrame = FrameName;
                 }
@@ -123,7 +123,7 @@ public class InventoryManager : MonoBehaviour
                 int FrameName1 = curItem.location;
                 Debug.LogWarning("I am the first Frame");
                 Target.SetActive(true);
-                _placeOnSpace.ActivateFrame(FrameName1 - 1);
+                _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
                 _previousFrame = FrameName1;
                 first = false;
             }

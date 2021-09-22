@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Frame
   - TextInList
+  - FrameMaterial
   layers:
   - Default
   - TransparentFX

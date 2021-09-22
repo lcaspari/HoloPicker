@@ -35,14 +35,14 @@ public class PlaceOnSpace : MonoBehaviour
         //keyboard.active = true;
         //keyboardText = keyboard.text;
         
-        if (keyboard.active == true)
+        /*if (keyboard.active == true)
         {
             Debug.Log("It would be open");
         }
         else if (keyboard.active == false)
         {
             Debug.Log("It would not be open");
-        }
+        }*/
 
         track.name = number.ToString();
         number++;
@@ -50,6 +50,7 @@ public class PlaceOnSpace : MonoBehaviour
 
     GameObject[] frames;
     GameObject obj;
+    GameObject[] frameColours;
     public void ProcessOrderStarted()
     {
 
@@ -63,14 +64,32 @@ public class PlaceOnSpace : MonoBehaviour
     }
     private GameObject _frame;
     private GameObject _oldFrame;
-    public void ActivateFrame(int name)
+    public void ActivateFrame(int name, string order)
     {
         _frame = transform.GetChild(name).gameObject;
         _frame.SetActive(true);
-        Debug.Log("target position: " + _frame.transform.position);
+
         target.GetComponent<Target>().CallPosition(_frame.transform.position);
         _frame.GetComponent<DisableScripts>().ToggleScripts();
  
+        if (order == "pick")
+        {
+            frameColours = GameObject.FindGameObjectsWithTag("FrameMaterial");
+
+            foreach (GameObject obj in frameColours)
+            {
+                obj.GetComponent<Renderer>().material.color = Color.green;
+            }
+        }
+        else
+        {
+            frameColours = GameObject.FindGameObjectsWithTag("FrameMaterial");
+
+            foreach (GameObject obj in frameColours)
+            {
+                obj.GetComponent<Renderer>().material.color = Color.blue;
+            }
+        }
     }
     public void DeactivateFrame(int name)
     {
