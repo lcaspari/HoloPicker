@@ -14,6 +14,7 @@ public class InventoryManager : MonoBehaviour
 
     public TextAsset orderList;
     public TextAsset inventoryList;
+    public GameObject Target;
 
     public string url = "https://api.jsonbin.io/b/613cc1c5aa02be1d4446600e";
 
@@ -105,6 +106,7 @@ public class InventoryManager : MonoBehaviour
                 if (order.orderItem.Count == 0)
                 {
                     Debug.Log("Order List does not contain items");
+                    Target.SetActive(false);
                     _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                 } else
                 {
@@ -120,6 +122,7 @@ public class InventoryManager : MonoBehaviour
                 OrderItem curItem = order.orderItem[0];
                 int FrameName1 = curItem.location;
                 Debug.LogWarning("I am the first Frame");
+                Target.SetActive(true);
                 _placeOnSpace.ActivateFrame(FrameName1 - 1);
                 _previousFrame = FrameName1;
                 first = false;

@@ -8,6 +8,7 @@ public class PlaceOnSpace : MonoBehaviour
     public GameObject frame;
     // to store last instantiated gameObject
     GameObject track;
+    public GameObject target;
     // to name the object
     TouchScreenKeyboard keyboard;
     public static string keyboardText = "";
@@ -48,7 +49,6 @@ public class PlaceOnSpace : MonoBehaviour
             obj.SetActive(false);
         }
 
-
     }
     private GameObject _frame;
     private GameObject _oldFrame;
@@ -56,6 +56,9 @@ public class PlaceOnSpace : MonoBehaviour
     {
         _frame = transform.GetChild(name).gameObject;
         _frame.SetActive(true);
+        Debug.Log("target position: " + _frame.transform.position);
+        target.GetComponent<Target>().CallPosition(_frame.transform.position);
+ 
     }
     public void DeactivateFrame(int name)
     {
