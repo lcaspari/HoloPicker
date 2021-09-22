@@ -31,18 +31,11 @@ public class PlaceOnSpace : MonoBehaviour
     int number = 1;
     public void NameFrame()
     {
-        //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
-        //keyboard.active = true;
-        //keyboardText = keyboard.text;
-        
-        /*if (keyboard.active == true)
-        {
-            Debug.Log("It would be open");
-        }
-        else if (keyboard.active == false)
-        {
-            Debug.Log("It would not be open");
-        }*/
+        keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
+        keyboardText = keyboard.text;
+        Debug.Log(keyboard.active);
+        keyboard.active = true;
+        Debug.Log(keyboard.active);
 
         track.name = number.ToString();
         number++;
