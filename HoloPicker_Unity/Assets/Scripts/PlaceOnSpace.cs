@@ -69,6 +69,7 @@ public class PlaceOnSpace : MonoBehaviour
         _frame.SetActive(true);
         Debug.Log("target position: " + _frame.transform.position);
         target.GetComponent<Target>().CallPosition(_frame.transform.position);
+        _frame.GetComponent<DisableScripts>().ToggleScripts();
  
     }
     public void DeactivateFrame(int name)

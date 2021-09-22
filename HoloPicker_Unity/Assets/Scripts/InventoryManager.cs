@@ -133,9 +133,6 @@ public class InventoryManager : MonoBehaviour
         else
         {
             Debug.Log("Order List does not contain items");
-            //OrderItem curItem = order.orderItem[0];
-            //int LastFrame = curItem.location;
-            //Debug.Log(LastFrame);
             _placeOnSpace.DeactivateFrame(_previousFrame - 1);
         }
     }
