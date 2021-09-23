@@ -37,11 +37,11 @@ public class PlaceOnSpace : MonoBehaviour
     int number = 1;
     public void NameFrame()
     {
-        keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
-        keyboardText = keyboard.text;
-        _frameName.text = keyboard.text;
-        _frameNameObject.SetActive(true);
-        _keyboardCheck.SetActive(true);
+        //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
+        //keyboardText = keyboard.text;
+        //_frameName.text = keyboard.text;
+        //_frameNameObject.SetActive(true);
+        //_keyboardCheck.SetActive(true);
 
         track.name = number.ToString();
         number++;
@@ -65,7 +65,6 @@ public class PlaceOnSpace : MonoBehaviour
     private GameObject _oldFrame;
     public void ActivateFrame(int name, string order)
     {
-        keyboard.active = false;
         _frame = transform.GetChild(name).gameObject;
         _frame.SetActive(true);
 
