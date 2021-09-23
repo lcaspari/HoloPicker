@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaceOnSpace : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlaceOnSpace : MonoBehaviour
     // to store last instantiated gameObject
     GameObject track;
     public GameObject target;
+    public Text _orderDetails;
     // to name the object
     TouchScreenKeyboard keyboard;
     public static string keyboardText = "";
@@ -32,9 +34,9 @@ public class PlaceOnSpace : MonoBehaviour
     public void NameFrame()
     {
         keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
-        keyboardText = keyboard.text;
+        //keyboardText = keyboard.text;
         keyboard.active = true;
-
+        _orderDetails.text = keyboard.text;
         track.name = number.ToString();
         number++;
     }
