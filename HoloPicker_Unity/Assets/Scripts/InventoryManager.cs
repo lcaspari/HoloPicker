@@ -124,7 +124,7 @@ public class InventoryManager : MonoBehaviour
                 _placeOnSpace.ActivateFrame(FrameName - 1, curItem.order);
                 _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                 _previousFrame = FrameName;
-                _orderDetails.text = "Item: " + curItem.name + " / " + curItem.order + " / Location: " + curItem.location + " / Quantity: " + curItem.quantity;
+                _orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
 
             }
 
@@ -138,7 +138,7 @@ public class InventoryManager : MonoBehaviour
             _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
             _previousFrame = FrameName1;
             first = false;
-            _orderDetails.text = "Item: " + curItem.name + " / " + curItem.order + " / Location: " + curItem.location + " / Quantity: " + curItem.quantity;
+            _orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
             _orderDetailsObject.SetActive(true);
         }
 
@@ -200,7 +200,7 @@ public class InventoryManager : MonoBehaviour
         string newOrderList = JsonUtility.ToJson(order, true);
         File.WriteAllText(Application.dataPath + "/Database/order_list.json", newOrderList);
         // Upload also to the internet
-        writeJSONtoURL(url, newOrderList);
+        //writeJSONtoURL(url, newOrderList);
     }
     public List<OrderItem> getOrderListFromJSON()
     {
