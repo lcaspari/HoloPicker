@@ -19,7 +19,6 @@ public class Target : MonoBehaviour
 
     public void CallPosition(Vector3 posTarget)
     {
-        Debug.Log("Position 2 = " + posTarget);
         tempPos = transform.position;
         tempPos = posTarget;
         transform.position = tempPos;
