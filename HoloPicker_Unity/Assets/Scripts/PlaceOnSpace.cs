@@ -10,8 +10,8 @@ public class PlaceOnSpace : MonoBehaviour
     // to store last instantiated gameObject
     GameObject track;
     public GameObject target;
-    public Text _orderDetails;
-    public GameObject _orderDetailsObject;
+    public Text _frameName;
+    public GameObject _frameNameObject;
     public GameObject _keyboardCheck;
     // to name the object
     TouchScreenKeyboard keyboard;
@@ -37,10 +37,11 @@ public class PlaceOnSpace : MonoBehaviour
     {
         keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
         keyboardText = keyboard.text;
-        keyboard.active = true;
-        _orderDetails.text = keyboard.text;
-        _orderDetailsObject.SetActive(true);
+        //keyboard.active = true;
+        _frameName.text = keyboard.text;
+        _frameNameObject.SetActive(true);
         _keyboardCheck.SetActive(true);
+        keyboard = null;
 
         track.name = number.ToString();
         number++;

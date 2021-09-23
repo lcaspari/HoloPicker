@@ -5,6 +5,7 @@ using System.IO;
 // For communicating with json bin
 using System.Net;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject Target;
     public PlaceOnSpace _placeOnSpace;
     public GameObject _orderFinish;
+    public Text _orderDetails;
+    public GameObject _orderDetailsObject;
 
     public string url = "https://api.jsonbin.io/b/613cc1c5aa02be1d4446600e";
 
@@ -110,6 +113,8 @@ public class InventoryManager : MonoBehaviour
                 Target.SetActive(false);
                 _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                 _orderFinish.SetActive(true);
+                _orderDetailsObject.SetActive(false);
+
 
             }
             else
@@ -119,6 +124,8 @@ public class InventoryManager : MonoBehaviour
                 _placeOnSpace.ActivateFrame(FrameName - 1, curItem.order);
                 _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                 _previousFrame = FrameName;
+                _orderDetails.text = "Item: " + curItem.name + " / " + curItem.order + " / Location: " + curItem.location + " / Quantity: " + curItem.quantity;
+
             }
 
         }
@@ -131,6 +138,8 @@ public class InventoryManager : MonoBehaviour
             _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
             _previousFrame = FrameName1;
             first = false;
+            _orderDetails.text = "Item: " + curItem.name + " / " + curItem.order + " / Location: " + curItem.location + " / Quantity: " + curItem.quantity;
+            _orderDetailsObject.SetActive(true);
         }
 
 
