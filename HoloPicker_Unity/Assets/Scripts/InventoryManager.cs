@@ -14,6 +14,9 @@ public class InventoryManager : MonoBehaviour
 
     public TextAsset orderList;
     public TextAsset inventoryList;
+    public GameObject Target;
+    public PlaceOnSpace _placeOnSpace;
+    public GameObject _orderFinish;
 
     public string url = "https://api.jsonbin.io/b/613cc1c5aa02be1d4446600e";
 
@@ -85,56 +88,52 @@ public class InventoryManager : MonoBehaviour
     // This operation takes the next item from the list and operates on the database and the frames to make a pick/place process
     // Is called when the user has started the order Process or finished the last item (by the OrderMenu)
 
-    public PlaceOnSpace _placeOnSpace;
+  
     int _previousFrame;
     bool first = true;
     public void processItem()
     {
         Debug.Log("First: " + first);
-        if (order.orderItem.Count > 0)
-        {
-            if (first == false)
-            {
-                OrderItem curItem = order.orderItem[0];
-                // Convert order item into inventory Item by adopting the values of the current item
-                InventoryItem newItem = new InventoryItem();
-                newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
-                // update the orderlist and the inventory
-                updateDatabase(curItem, newItem);
 
-                if (order.orderItem.Count == 0)
-                {
-                    Debug.Log("Order List does not contain items");
-                    _placeOnSpace.DeactivateFrame(_previousFrame - 1);
-                } else
-                {
-                    curItem = order.orderItem[0];
-                    int FrameName = curItem.location;
-                    _placeOnSpace.ActivateFrame(FrameName - 1);
-                    _placeOnSpace.DeactivateFrame(_previousFrame - 1);
-                    _previousFrame = FrameName;
-                }
-                
-            } else
+        if (first == false)
+        {
+            OrderItem curItem = order.orderItem[0];
+            // Convert order item into inventory Item by adopting the values of the current item
+            InventoryItem newItem = new InventoryItem();
+            newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
+            // update the orderlist and the inventory
+            updateDatabase(curItem, newItem);
+
+            if (order.orderItem.Count == 0)
             {
-                OrderItem curItem = order.orderItem[0];
-                int FrameName1 = curItem.location;
-                Debug.LogWarning("I am the first Frame");
-                _placeOnSpace.ActivateFrame(FrameName1 - 1);
-                _previousFrame = FrameName1;
-                first = false;
+                Debug.Log("Order List does not contain items");
+                Target.SetActive(false);
+                _placeOnSpace.DeactivateFrame(_previousFrame - 1);
+                _orderFinish.SetActive(true);
+
             }
-            
+            else
+            {
+                curItem = order.orderItem[0];
+                int FrameName = curItem.location;
+                _placeOnSpace.ActivateFrame(FrameName - 1, curItem.order);
+                _placeOnSpace.DeactivateFrame(_previousFrame - 1);
+                _previousFrame = FrameName;
+            }
 
         }
         else
         {
-            Debug.Log("Order List does not contain items");
-            //OrderItem curItem = order.orderItem[0];
-            //int LastFrame = curItem.location;
-            //Debug.Log(LastFrame);
-            _placeOnSpace.DeactivateFrame(_previousFrame - 1);
+            OrderItem curItem = order.orderItem[0];
+            int FrameName1 = curItem.location;
+            Debug.LogWarning("I am the first Frame");
+            Target.SetActive(true);
+            _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
+            _previousFrame = FrameName1;
+            first = false;
         }
+
+
     }
 
     string readJSONfromURL(string url)

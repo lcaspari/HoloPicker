@@ -6,7 +6,7 @@ public class DisableScripts : MonoBehaviour
 {
     public MonoBehaviour[] disableScripts;
 
-    public void ToggleScripts(GameObject this_frame)
+    public void ToggleScripts()
     {
         Debug.Log("disable scripts is being called");
         
@@ -20,11 +20,4 @@ public class DisableScripts : MonoBehaviour
       
     }
 
-    public void CallToggle()
-    {
-        foreach (GameObject a_frame in GameObject.FindGameObjectsWithTag("Frame"))
-        {
-            ToggleScripts(a_frame);
-        }
-    }
 }

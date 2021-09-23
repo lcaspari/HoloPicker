@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaceOnSpace : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class PlaceOnSpace : MonoBehaviour
     public GameObject frame;
     // to store last instantiated gameObject
     GameObject track;
+    public GameObject target;
+    public Text _orderDetails;
     // to name the object
     TouchScreenKeyboard keyboard;
     public static string keyboardText = "";
+    private string input;
 
 
 
@@ -29,15 +33,17 @@ public class PlaceOnSpace : MonoBehaviour
     int number = 1;
     public void NameFrame()
     {
-        //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad);
+        keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
         //keyboardText = keyboard.text;
-
+        keyboard.active = true;
+        _orderDetails.text = keyboard.text;
         track.name = number.ToString();
         number++;
     }
 
     GameObject[] frames;
     GameObject obj;
+    GameObject[] frameColours;
     public void ProcessOrderStarted()
     {
 
@@ -48,14 +54,35 @@ public class PlaceOnSpace : MonoBehaviour
             obj.SetActive(false);
         }
 
-
     }
     private GameObject _frame;
     private GameObject _oldFrame;
-    public void ActivateFrame(int name)
+    public void ActivateFrame(int name, string order)
     {
         _frame = transform.GetChild(name).gameObject;
         _frame.SetActive(true);
+
+        target.GetComponent<Target>().CallPosition(_frame.transform.position);
+        _frame.GetComponent<DisableScripts>().ToggleScripts();
+ 
+        if (order == "pick")
+        {
+            frameColours = GameObject.FindGameObjectsWithTag("FrameMaterial");
+
+            foreach (GameObject obj in frameColours)
+            {
+                obj.GetComponent<Renderer>().material.color = Color.green;
+            }
+        }
+        else
+        {
+            frameColours = GameObject.FindGameObjectsWithTag("FrameMaterial");
+
+            foreach (GameObject obj in frameColours)
+            {
+                obj.GetComponent<Renderer>().material.color = Color.blue;
+            }
+        }
     }
     public void DeactivateFrame(int name)
     {
