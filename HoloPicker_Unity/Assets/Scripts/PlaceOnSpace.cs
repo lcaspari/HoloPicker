@@ -63,10 +63,9 @@ public class PlaceOnSpace : MonoBehaviour
     private GameObject _oldFrame;
     public void ActivateFrame(int name, string order)
     {
+        keyboard.active = false;
         _frame = transform.GetChild(name).gameObject;
         _frame.SetActive(true);
-
-        keyboard.active = false;
 
         target.GetComponent<Target>().CallPosition(_frame.transform.position);
         _frame.GetComponent<DisableScripts>().ToggleScripts();
