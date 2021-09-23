@@ -33,9 +33,7 @@ public class PlaceOnSpace : MonoBehaviour
     {
         keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
         keyboardText = keyboard.text;
-        Debug.Log(keyboard.active);
         keyboard.active = true;
-        Debug.Log(keyboard.active);
 
         track.name = number.ToString();
         number++;
