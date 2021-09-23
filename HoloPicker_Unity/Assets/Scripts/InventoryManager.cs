@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // For Writing into JSON Files
 using System.IO;
 // For communicating with json bin
 using System.Net;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -199,5 +199,11 @@ public class InventoryManager : MonoBehaviour
         //return JsonUtility.FromJson<ItemListOrder>(orderStr).orderItem;
         ItemListOrder order_2 = JsonUtility.FromJson<ItemListOrder>(orderList.text);
         return order.orderItem;
+    }
+
+    // Function to restart the program used in the main menu
+    public void restart()
+    {
+        SceneManager.LoadScene("HoloPicker"); //Load scene
     }
 }
