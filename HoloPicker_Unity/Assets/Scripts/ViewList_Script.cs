@@ -11,8 +11,8 @@ public class ViewList_Script : MonoBehaviour
 
     // Get the order item list from inventory manager
     List<InventoryManager.OrderItem> items = new List<InventoryManager.OrderItem>();
-    // Create a list of strings from the order items
-    List<string> attributes = new List<string>();
+    
+
 
     void Start()
     {
@@ -24,16 +24,11 @@ public class ViewList_Script : MonoBehaviour
     {
 
     }
-
-    public void createList()
+    List<string> createInternLists(List<InventoryManager.OrderItem> items)
     {
-        // Destroy all children, so old list does not show up anymore
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).GetComponent<ViewList_Text>().DestroyClone();
-        }
+        // Create a list of strings from the order items
+        List<string> attributes = new List<string>();
 
-        items = inventoryManager.order.orderItem;
         // Add first line of table
         attributes.Add("ORDER");
         attributes.Add("QUANTITY");
@@ -53,12 +48,47 @@ public class ViewList_Script : MonoBehaviour
             attributes.Add(item.location.ToString());
         }
 
+        return attributes;
+    }
+
+    public void createList()
+    {
+        // Create a list of strings from the order items
+        List<string> attributes = new List<string>(); 
+
+        attributes = createInternLists(inventoryManager.order.orderItem);
+
         // Instantiate text objects with attribute as text
         foreach (string attribute in attributes)
         {
             track = Instantiate(text, transform);
             track.tag = "TextInList";
             track.GetComponentInChildren<UnityEngine.UI.Text>().text = attribute;
+        }
+    }
+
+    public void updateList()
+    {
+        // Create a list of strings from the order items
+        List<string> attributes = new List<string>();
+
+        attributes = createInternLists(inventoryManager.getOrderListFromJSON());
+
+        // fill content of the table with the new list and then empty the rest by writing nothing in it
+        for (int i = 0; i < transform.childCount; i++)
+        {
+           
+            if (i < attributes.Count)
+            {
+                transform.GetChild(i).GetComponentInChildren<UnityEngine.UI.Text>().text = attributes[i];
+            }
+            // "delete" unused table objects by erasing the text inside
+            else
+            {
+                Debug.Log(i);
+                transform.GetChild(i).GetComponentInChildren<UnityEngine.UI.Text>().text = "";
+            }
+            
         }
     }
 }
