@@ -493,6 +493,10 @@ PrefabInstance:
       value: FrameMaterial
       objectReference: {fileID: 0}
     - target: {fileID: 2376996458483696789, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
+      propertyPath: updateLinkedTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2376996458483696789, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
       propertyPath: magneticSurfaces.Array.size
       value: 1
       objectReference: {fileID: 0}
