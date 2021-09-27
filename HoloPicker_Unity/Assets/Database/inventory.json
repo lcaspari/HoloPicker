@@ -187,24 +187,6 @@
             "location": 1
         },
         {
-            "id": "002",
-            "name": "Paulaner Spezi",
-            "category": "drink",
-            "location": 2
-        },
-        {
-            "id": "002",
-            "name": "Paulaner Spezi",
-            "category": "drink",
-            "location": 2
-        },
-        {
-            "id": "002",
-            "name": "Paulaner Spezi",
-            "category": "drink",
-            "location": 2
-        },
-        {
             "id": "003",
             "name": "Google Pixel 4a",
             "category": "smartphone",
@@ -215,12 +197,6 @@
             "name": "Nietsche: Also sprach Zarathustra",
             "category": "book",
             "location": 1
-        },
-        {
-            "id": "002",
-            "name": "Paulaner Spezi",
-            "category": "drink",
-            "location": 2
         },
         {
             "id": "002",
@@ -815,6 +791,42 @@
             "name": "Paulaner Spezi",
             "category": "drink",
             "location": 2
+        },
+        {
+            "id": "003",
+            "name": "Google Pixel 4a",
+            "category": "smartphone",
+            "location": 3
+        },
+        {
+            "id": "001",
+            "name": "Nietsche: Also sprach Zarathustra",
+            "category": "book",
+            "location": 1
+        },
+        {
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
+        },
+        {
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
+        },
+        {
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
+        },
+        {
+            "id": "003",
+            "name": "Google Pixel 4a",
+            "category": "smartphone",
+            "location": 3
         }
     ]
 }
