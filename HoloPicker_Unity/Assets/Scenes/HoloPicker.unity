@@ -666,7 +666,7 @@ PrefabInstance:
     - target: {fileID: 7134706144040580193, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
       propertyPath: selectedConstraints.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 536445747}
     - target: {fileID: 8866370031956730754, guid: 77158ac9eec4f564dbb77ba738e861d3, type: 3}
       propertyPath: constraintOnRotation
       value: 5
@@ -1080,7 +1080,7 @@ ScaleConstraint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536445745}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Weight: 1
   m_ScaleAtRest: {x: 0.1, y: 0.1, z: 0.1}
   m_ScaleOffset: {x: 1, y: 1, z: 1}
