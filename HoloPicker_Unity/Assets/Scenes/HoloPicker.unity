@@ -1080,13 +1080,13 @@ ScaleConstraint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536445745}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Weight: 1
   m_ScaleAtRest: {x: 0.1, y: 0.1, z: 0.1}
   m_ScaleOffset: {x: 1, y: 1, z: 1}
-  m_AffectScalingX: 1
-  m_AffectScalingY: 1
-  m_AffectScalingZ: 0
+  m_AffectScalingX: 0
+  m_AffectScalingY: 0
+  m_AffectScalingZ: 1
   m_IsContraintActive: 1
   m_IsLocked: 1
   m_Sources: []
