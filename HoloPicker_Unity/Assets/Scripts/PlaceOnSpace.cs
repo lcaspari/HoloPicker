@@ -29,7 +29,6 @@ public class PlaceOnSpace : MonoBehaviour
     {
 
         track = Instantiate(frame, transform);
-        track.transform.position = track.transform.position + new Vector3(0, 0, 1);
         track.SetActive(true);
     }
 
