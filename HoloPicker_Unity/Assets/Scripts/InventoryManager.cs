@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
 
     public TextAsset orderList;
     public TextAsset inventoryList;
-    public GameObject Target;
+    public GameObject target;
     public PlaceOnSpace _placeOnSpace;
     public GameObject productInformation;
     public ProductInformation productInformation_script;
@@ -93,6 +93,62 @@ public class InventoryManager : MonoBehaviour
   
     int _previousFrame;
     bool first = true;
+    OrderItem curItem;
+    public void nextItem()
+    {
+
+        if (order.orderItem.Count != 0)
+        {
+            // take frist item from orderlist
+            curItem = order.orderItem[0];
+        }
+        
+        // Case: first Frame
+        if (first == true)
+        {
+            // location
+            int curLocation = curItem.location;
+            // Activate respective frame with correct color depending on order type
+            _placeOnSpace.ActivateFrame(curLocation - 1, curItem.order);
+            // Activate target for the direction arrow and product information
+            target.SetActive(true);
+            // first frame was processed;
+            first = false;
+        }
+
+        // Case: not first or last
+        if (first == false)
+        {
+            // process previous item
+
+            // Convert order item into inventory Item by adopting the values of the current item
+            InventoryItem newItem = new InventoryItem();
+            newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
+            // update the orderlist and the inventory
+            updateDatabase(curItem, newItem);
+            // Deactivate the old frame
+            _placeOnSpace.DeactivateFrame(curItem.location - 1);
+
+            // Continue if list is not empty yet
+            if (order.orderItem.Count != 0)
+            {
+                // Prepare next Item
+                curItem = order.orderItem[0];
+                // location
+                int curLocation = curItem.location;
+                // Activate respective frame with correct color depending on order type
+                _placeOnSpace.ActivateFrame(curLocation - 1, curItem.order);
+                // Show details to current product
+                productInformation_script.setContent(curItem.order, curItem.id, curItem.name, curItem.quantity, curItem.location);
+            }
+            // list does not contain items anymore, so deactivate the target
+            else
+            {
+                // Deactivate target for direction arrow and position of product information
+                target.SetActive(false);
+            }
+        }
+    }
     public void processItem()
     {
         Debug.Log("First: " + first);
@@ -110,7 +166,7 @@ public class InventoryManager : MonoBehaviour
             if (order.orderItem.Count == 0)
             {
                 Debug.Log("Order List does not contain items");
-                Target.SetActive(false);
+                //Target.SetActive(false);
                 _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                 //_orderFinish.SetActive(true);
                 //_orderDetailsObject.SetActive(false);
@@ -132,7 +188,7 @@ public class InventoryManager : MonoBehaviour
             OrderItem curItem = order.orderItem[0];
             int FrameName1 = curItem.location;
             Debug.LogWarning("I am the first Frame");
-            Target.SetActive(true);
+            //Target.SetActive(true);
             _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
             _previousFrame = FrameName1;
             first = false;

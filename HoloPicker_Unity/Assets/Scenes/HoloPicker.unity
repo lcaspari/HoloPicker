@@ -2097,11 +2097,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7779420039263858271, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7779420039263858271, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7779420039263858271, guid: 937ce507dd7ee334ba569554e24adbdd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2673,7 +2673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2483093654602221341, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2483093654602221341, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3088,7 +3088,7 @@ MonoBehaviour:
   done: 0
   orderList: {fileID: 4900000, guid: 23135dbb8674c73488fab4580fd53876, type: 3}
   inventoryList: {fileID: 4900000, guid: e79b487e52efb5a488b2a2682f1343be, type: 3}
-  Target: {fileID: 1945752892}
+  target: {fileID: 1992120972}
   _placeOnSpace: {fileID: 9562512}
   productInformation: {fileID: 18868407}
   productInformation_script: {fileID: 18868410}
@@ -3307,7 +3307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864793685903309806, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: processItem
+      value: nextItem
       objectReference: {fileID: 0}
     - target: {fileID: 3864793685903309806, guid: 40b588bd40632eb41a0af374d91c4fc9, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4379,7 +4379,7 @@ Transform:
   m_GameObject: {fileID: 1992120972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.61556244, y: -0.32119462, z: 0.890646}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 780658005}
   - {fileID: 110269969}
