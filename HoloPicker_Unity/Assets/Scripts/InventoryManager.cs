@@ -17,9 +17,8 @@ public class InventoryManager : MonoBehaviour
     public TextAsset inventoryList;
     public GameObject Target;
     public PlaceOnSpace _placeOnSpace;
-    public GameObject _orderFinish;
-    public Text _orderDetails;
-    public GameObject _orderDetailsObject;
+    public GameObject productInformation;
+    public ProductInformation productInformation_script;
 
     public string url = "https://api.jsonbin.io/b/613cc1c5aa02be1d4446600e";
 
@@ -107,15 +106,14 @@ public class InventoryManager : MonoBehaviour
             // update the orderlist and the inventory
             updateDatabase(curItem, newItem);
 
+            // Order list is empty
             if (order.orderItem.Count == 0)
             {
                 Debug.Log("Order List does not contain items");
                 Target.SetActive(false);
                 _placeOnSpace.DeactivateFrame(_previousFrame - 1);
-                _orderFinish.SetActive(true);
-                _orderDetailsObject.SetActive(false);
-
-
+                //_orderFinish.SetActive(true);
+                //_orderDetailsObject.SetActive(false);
             }
             else
             {
@@ -124,8 +122,8 @@ public class InventoryManager : MonoBehaviour
                 _placeOnSpace.ActivateFrame(FrameName - 1, curItem.order);
                 _placeOnSpace.DeactivateFrame(_previousFrame - 1);
                 _previousFrame = FrameName;
-                _orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
-
+                //_orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
+                productInformation_script.setContent(curItem.order, curItem.id, curItem.name, curItem.quantity, curItem.location);
             }
 
         }
@@ -138,8 +136,8 @@ public class InventoryManager : MonoBehaviour
             _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
             _previousFrame = FrameName1;
             first = false;
-            _orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
-            _orderDetailsObject.SetActive(true);
+            //_orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
+            //_orderDetailsObject.SetActive(true);
         }
 
 

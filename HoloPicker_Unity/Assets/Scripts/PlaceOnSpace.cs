@@ -67,7 +67,7 @@ public class PlaceOnSpace : MonoBehaviour
         _frame = transform.GetChild(name).gameObject;
         _frame.SetActive(true);
 
-        target.GetComponent<Target>().CallPosition(_frame.transform.position);
+        target.GetComponent<Target>().CallPosition(_frame.transform.position, _frame.transform.rotation);
         _frame.GetComponent<DisableScripts>().ToggleScripts();
  
         if (order == "pick")

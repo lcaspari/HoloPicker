@@ -6,6 +6,7 @@ public class Target : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector3 tempPos;
+    Quaternion tempRot;
     void Start()
     {
         
@@ -17,10 +18,16 @@ public class Target : MonoBehaviour
         
     }
 
-    public void CallPosition(Vector3 posTarget)
+    public void CallPosition(Vector3 posTarget, Quaternion rotation)
     {
+        // change position to current frame
         tempPos = transform.position;
         tempPos = posTarget;
         transform.position = tempPos;
+
+        // change rotation according to current frame
+        tempRot = transform.rotation;
+        tempRot = rotation;
+        transform.rotation = tempRot;
     }
 }
