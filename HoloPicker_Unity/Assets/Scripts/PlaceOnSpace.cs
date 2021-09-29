@@ -1,54 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 public class PlaceOnSpace : MonoBehaviour
 {
 
     public GameObject frame;
+    GameObject[] frames;
+    GameObject obj;
+    GameObject[] frameColours;
     // to store last instantiated gameObject
     GameObject track;
+    // instantiate gameobject for the target of the arrow
     public GameObject target;
-    public Text _frameName;
-    public GameObject _frameNameObject;
-    public GameObject _keyboardCheck;
-    // to name the object
-    TouchScreenKeyboard keyboard;
-    public static string keyboardText = "";
-    private string input;
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    
+    // instantiates a new frame and activates it to make it visible
     public void InstantiateFrame()
     {
-
         track = Instantiate(frame, transform);
         track.SetActive(true);
     }
 
 
+    // names the frames that are being instantiated
     int number = 1;
     public void NameFrame()
     {
-        //keyboard = TouchScreenKeyboard.Open("text to edit", TouchScreenKeyboardType.NumberPad, false, false, false, false);
-        //keyboardText = keyboard.text;
-        //_frameName.text = keyboard.text;
-        //_frameNameObject.SetActive(true);
-        //_keyboardCheck.SetActive(true);
-
         track.name = number.ToString();
         number++;
     }
 
-    GameObject[] frames;
-    GameObject obj;
-    GameObject[] frameColours;
+    //deactivates all frames when the order is processed
     public void ProcessOrderStarted()
     {
 
@@ -62,12 +43,16 @@ public class PlaceOnSpace : MonoBehaviour
     }
     private GameObject _frame;
     private GameObject _oldFrame;
+
+    // activates the current frame and gives it a colour depending on the action
     public void ActivateFrame(int name, string order)
     {
         _frame = transform.GetChild(name).gameObject;
         _frame.SetActive(true);
 
+        // position of the current frame is also given to the target
         target.GetComponent<Target>().CallPosition(_frame.transform.position, _frame.transform.rotation);
+        // disable scripts is called to disable the scalability component of the frames
         _frame.GetComponent<DisableScripts>().ToggleScripts();
  
         if (order == "pick")
@@ -89,6 +74,8 @@ public class PlaceOnSpace : MonoBehaviour
             }
         }
     }
+
+    // deactivates the frame 
     public void DeactivateFrame(int name)
     {
         _oldFrame = transform.GetChild(name).gameObject;

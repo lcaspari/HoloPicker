@@ -6,11 +6,10 @@ public class DisableScripts : MonoBehaviour
 {
     public MonoBehaviour[] disableScripts;
 
+    // deactivates the components that enable interactibility of the frames
     public void ToggleScripts()
-    {
-        Debug.Log("disable scripts is being called");
-        
-        
+    {      
+       
         foreach (var script in disableScripts)
         {
             script.enabled = false;
