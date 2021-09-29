@@ -3,6 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
+      <Path>Assets</Path>
       <Path>Library/PackageCache/com.microsoft.mixedreality.toolkit.standardassets@6c557cdf18c8-1623096928191</Path>
       <Path>Library/PackageCache/com.ptc.vuforia.engine@efa13d4486</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@1.7.1</Path>
@@ -25,9 +26,12 @@
     </explicitIncludes>
     <explicitExcludes>
       <Path>.idea</Path>
+      <Path>.vs</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>QCAR</Path>
+      <Path>Temp</Path>
+      <Path>UIElementsSchema</Path>
       <Path>UserSettings</Path>
       <Path>obj</Path>
     </explicitExcludes>

@@ -1,16 +1,25 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // For Writing into JSON Files
 using System.IO;
 // For communicating with json bin
 using System.Net;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
 
+    // Variables for the Order process
+    public bool done = false;
+
     public TextAsset orderList;
     public TextAsset inventoryList;
+    public GameObject target;
+    public GameObject arrowIndicator;
+    public PlaceOnSpace _placeOnSpace;
+    public GameObject productInformation;
+    public ProductInformation productInformation_script;
 
     public string url = "https://api.jsonbin.io/b/613cc1c5aa02be1d4446600e";
 
@@ -23,7 +32,7 @@ public class InventoryManager : MonoBehaviour
         public string id;
         public string name;
         public string category;
-        public int[] location;
+        public int location;
     }
 
     [System.Serializable]
@@ -32,7 +41,7 @@ public class InventoryManager : MonoBehaviour
         public string id;
         public string name;
         public string category;
-        public int[] location;
+        public int location;
     }
 
     [System.Serializable]
@@ -55,6 +64,17 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void readDatabase()
+    {
         // Read local order list
         // string orderStr = orderList.text;
         // Read web order list
@@ -68,28 +88,120 @@ public class InventoryManager : MonoBehaviour
         inventory = JsonUtility.FromJson<ItemListInventory>(inventoryList.text);
     }
 
-    // Update is called once per frame
-    void Update()
+    // This operation takes the next item from the list and operates on the database and the frames to make a pick/place process
+    // Is called when the user has started the order Process or finished the last item (by the OrderMenu)
+
+  
+    int _previousFrame;
+    bool first = true;
+    OrderItem curItem;
+    public void nextItem()
     {
 
-        //Debug.Log("ITEM: " + order.item[0].id);
-        // User finishes one order item
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (order.orderItem.Count != 0)
         {
-            if (order.orderItem.Count > 0)
+            // take frist item from orderlist
+            curItem = order.orderItem[0];
+        }
+        
+        // Case: first Frame
+        if (first == true)
+        {
+            // location
+            int curLocation = curItem.location;
+            // Activate respective frame with correct color depending on order type
+            _placeOnSpace.ActivateFrame(curLocation - 1, curItem.order);
+            // Activate target for the direction arrow and product information
+            target.SetActive(true);
+            // Activate arrow to indicate direction
+            arrowIndicator.SetActive(true);
+            // first frame was processed;
+            first = false;
+        }
+
+        // Case: not first or last
+        if (first == false)
+        {
+            // process previous item
+
+            // Convert order item into inventory Item by adopting the values of the current item
+            InventoryItem newItem = new InventoryItem();
+            newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
+            // update the orderlist and the inventory
+            updateDatabase(curItem, newItem);
+            // Deactivate the old frame
+            _placeOnSpace.DeactivateFrame(curItem.location - 1);
+
+            // Continue if list is not empty yet
+            if (order.orderItem.Count != 0)
             {
-                OrderItem curItem = order.orderItem[0];
-                // Convert order item into inventory Item by adopting the values of the current item
-                InventoryItem newItem = new InventoryItem();
-                newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
-                // update the orderlist and the inventory
-                updateDatabase(curItem, newItem);
-            } else
+                // Prepare next Item
+                curItem = order.orderItem[0];
+                // location
+                int curLocation = curItem.location;
+                // Activate respective frame with correct color depending on order type
+                _placeOnSpace.ActivateFrame(curLocation - 1, curItem.order);
+                // Show details to current product
+                productInformation_script.setContent(curItem.order, curItem.id, curItem.name, curItem.quantity, curItem.location);
+            }
+            // Case: Last item gone/ empty list
+            else
+            {
+                // Deactivate target for direction arrow and position of product information
+                target.SetActive(false);
+                // Deactivate arrow to indicate direction
+                arrowIndicator.SetActive(false);
+            }
+        }
+    }
+    public void processItem()
+    {
+        Debug.Log("First: " + first);
+
+        if (first == false)
+        {
+            OrderItem curItem = order.orderItem[0];
+            // Convert order item into inventory Item by adopting the values of the current item
+            InventoryItem newItem = new InventoryItem();
+            newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
+            // update the orderlist and the inventory
+            updateDatabase(curItem, newItem);
+
+            // Order list is empty
+            if (order.orderItem.Count == 0)
             {
                 Debug.Log("Order List does not contain items");
+                //Target.SetActive(false);
+                _placeOnSpace.DeactivateFrame(_previousFrame - 1);
+                //_orderFinish.SetActive(true);
+                //_orderDetailsObject.SetActive(false);
             }
-            
+            else
+            {
+                curItem = order.orderItem[0];
+                int FrameName = curItem.location;
+                _placeOnSpace.ActivateFrame(FrameName - 1, curItem.order);
+                _placeOnSpace.DeactivateFrame(_previousFrame - 1);
+                _previousFrame = FrameName;
+                //_orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
+                productInformation_script.setContent(curItem.order, curItem.id, curItem.name, curItem.quantity, curItem.location);
+            }
+
         }
+        else
+        {
+            OrderItem curItem = order.orderItem[0];
+            int FrameName1 = curItem.location;
+            Debug.LogWarning("I am the first Frame");
+            //Target.SetActive(true);
+            _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
+            _previousFrame = FrameName1;
+            first = false;
+            //_orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
+            //_orderDetailsObject.SetActive(true);
+        }
+
+
     }
 
     string readJSONfromURL(string url)
@@ -106,11 +218,11 @@ public class InventoryManager : MonoBehaviour
         client.Headers.Add("X-Master-Key", "$2b$10$7XBSMFNLrINX/pZ7qH1J3evt.HcS.47jSOr.pzIVqZEFnPzYfBCEa");
         // Upload new data
         client.UploadString(url, "PUT", data);
-        
     }
 
     void updateDatabase(OrderItem curItem, InventoryItem newItem)
     {
+        Debug.Log("UpdateDatabase");
         // Pick Process
         if (curItem.order == "pick")
         {
@@ -120,7 +232,7 @@ public class InventoryManager : MonoBehaviour
                 // Search for element in enventory list with same id and location as current item in order list
                 InventoryItem result = inventory.inventoryItem.Find(x => (
                 x.id == newItem.id &&
-                x.location[0] == newItem.location[0] && x.location[1] == newItem.location[1] && x.location[2] == newItem.location[2])
+                x.location == newItem.location)
                 );
                 // Delete Item from inventory
                 inventory.inventoryItem.Remove(result);
@@ -147,6 +259,19 @@ public class InventoryManager : MonoBehaviour
         string newOrderList = JsonUtility.ToJson(order, true);
         File.WriteAllText(Application.dataPath + "/Database/order_list.json", newOrderList);
         // Upload also to the internet
-        writeJSONtoURL(url, newOrderList);
+        //writeJSONtoURL(url, newOrderList);
+    }
+    public List<OrderItem> getOrderListFromJSON()
+    {
+        //string orderStr = readJSONfromURL(url);
+        //return JsonUtility.FromJson<ItemListOrder>(orderStr).orderItem;
+        ItemListOrder order_2 = JsonUtility.FromJson<ItemListOrder>(orderList.text);
+        return order.orderItem;
+    }
+
+    // Function to restart the program used in the main menu
+    public void restart()
+    {
+        SceneManager.LoadScene("HoloPicker"); //Load scene
     }
 }
