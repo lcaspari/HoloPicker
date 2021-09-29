@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
     public TextAsset orderList;
     public TextAsset inventoryList;
     public GameObject target;
+    public GameObject arrowIndicator;
     public PlaceOnSpace _placeOnSpace;
     public GameObject productInformation;
     public ProductInformation productInformation_script;
@@ -112,6 +113,8 @@ public class InventoryManager : MonoBehaviour
             _placeOnSpace.ActivateFrame(curLocation - 1, curItem.order);
             // Activate target for the direction arrow and product information
             target.SetActive(true);
+            // Activate arrow to indicate direction
+            arrowIndicator.SetActive(true);
             // first frame was processed;
             first = false;
         }
@@ -141,11 +144,13 @@ public class InventoryManager : MonoBehaviour
                 // Show details to current product
                 productInformation_script.setContent(curItem.order, curItem.id, curItem.name, curItem.quantity, curItem.location);
             }
-            // list does not contain items anymore, so deactivate the target
+            // Case: Last item gone/ empty list
             else
             {
                 // Deactivate target for direction arrow and position of product information
                 target.SetActive(false);
+                // Deactivate arrow to indicate direction
+                arrowIndicator.SetActive(false);
             }
         }
     }

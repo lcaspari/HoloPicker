@@ -19,9 +19,9 @@ public class ProductInformation : MonoBehaviour
     public void setContent(string action, string id, string name, int quantity, int location)
     {
         string[] features = {action, id, name, quantity.ToString(), location.ToString()};
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 5; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponentInChildren<UnityEngine.UI.Text>().text = features[i];
+            transform.GetChild(i).GetComponentInChildren<UnityEngine.UI.Text>().text = features[i-5];
         }
     }
 }

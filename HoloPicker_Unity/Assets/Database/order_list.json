@@ -1,6 +1,30 @@
 {
     "orderItem": [
         {
+            "order": "pick",
+            "quantity": 2,
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
+        },
+        {
+            "order": "place",
+            "quantity": 1,
+            "id": "001",
+            "name": "Nietsche: Also sprach Zarathustra",
+            "category": "book",
+            "location": 1
+        },
+        {
+            "order": "place",
+            "quantity": 3,
+            "id": "002",
+            "name": "Paulaner Spezi",
+            "category": "drink",
+            "location": 2
+        },
+        {
             "order": "place",
             "quantity": 1,
             "id": "003",
