@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // Start is called before the first frame update
     Vector3 tempPos;
     Quaternion tempRot;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Function is called to adjust the position and rotation of the product information window according to the currently shown frame
     public void CallPosition(Vector3 posTarget, Quaternion rotation)
     {
         // change position to current frame

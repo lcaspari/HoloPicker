@@ -61,18 +61,6 @@ public class InventoryManager : MonoBehaviour
     public ItemListOrder order = new ItemListOrder();
     public ItemListInventory inventory = new ItemListInventory();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void readDatabase()
     {
         // Read local order list
@@ -89,9 +77,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     // This operation takes the next item from the list and operates on the database and the frames to make a pick/place process
-    // Is called when the user has started the order Process or finished the last item (by the OrderMenu)
-
-  
+    // Is called when user presses "NextItem"
     int _previousFrame;
     bool first = true;
     OrderItem curItem;
@@ -153,55 +139,6 @@ public class InventoryManager : MonoBehaviour
                 arrowIndicator.SetActive(false);
             }
         }
-    }
-    public void processItem()
-    {
-        Debug.Log("First: " + first);
-
-        if (first == false)
-        {
-            OrderItem curItem = order.orderItem[0];
-            // Convert order item into inventory Item by adopting the values of the current item
-            InventoryItem newItem = new InventoryItem();
-            newItem.id = curItem.id; newItem.name = curItem.name; newItem.category = curItem.category; newItem.location = curItem.location;
-            // update the orderlist and the inventory
-            updateDatabase(curItem, newItem);
-
-            // Order list is empty
-            if (order.orderItem.Count == 0)
-            {
-                Debug.Log("Order List does not contain items");
-                //Target.SetActive(false);
-                _placeOnSpace.DeactivateFrame(_previousFrame - 1);
-                //_orderFinish.SetActive(true);
-                //_orderDetailsObject.SetActive(false);
-            }
-            else
-            {
-                curItem = order.orderItem[0];
-                int FrameName = curItem.location;
-                _placeOnSpace.ActivateFrame(FrameName - 1, curItem.order);
-                _placeOnSpace.DeactivateFrame(_previousFrame - 1);
-                _previousFrame = FrameName;
-                //_orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
-                productInformation_script.setContent(curItem.order, curItem.id, curItem.name, curItem.quantity, curItem.location);
-            }
-
-        }
-        else
-        {
-            OrderItem curItem = order.orderItem[0];
-            int FrameName1 = curItem.location;
-            Debug.LogWarning("I am the first Frame");
-            //Target.SetActive(true);
-            _placeOnSpace.ActivateFrame(FrameName1 - 1, curItem.order);
-            _previousFrame = FrameName1;
-            first = false;
-            //_orderDetails.text = "Item: " + curItem.name + " / Quantity: " + curItem.quantity + " / Location: " + curItem.location + " / Action: " + curItem.order;
-            //_orderDetailsObject.SetActive(true);
-        }
-
-
     }
 
     string readJSONfromURL(string url)

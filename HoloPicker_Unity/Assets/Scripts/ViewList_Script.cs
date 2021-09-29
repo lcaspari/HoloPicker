@@ -10,19 +10,7 @@ public class ViewList_Script : MonoBehaviour
 
     // Get the order item list from inventory manager
     List<InventoryManager.OrderItem> items = new List<InventoryManager.OrderItem>();
-    
-
-
-    void Start()
-    {
-        createList();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
     List<string> createInternLists(List<InventoryManager.OrderItem> items)
     {
         // Create a list of strings from the order items
@@ -57,6 +45,7 @@ public class ViewList_Script : MonoBehaviour
         return attributes;
     }
 
+    // Creates a list with the first five object of the order list and instantiates text objects where each object contains one attribute of the order list
     public void createList()
     {
         // Create a list of strings from the order items
@@ -67,12 +56,16 @@ public class ViewList_Script : MonoBehaviour
         // Instantiate text objects with attribute as text
         foreach (string attribute in attributes)
         {
+            // Instantiate object
             track = Instantiate(text, transform);
             track.tag = "TextInList";
+            // Change text in object to one attribute of the order list
             track.GetComponentInChildren<UnityEngine.UI.Text>().text = attribute;
         }
     }
 
+    // Update List is always called when the InventoryManager changes the orderlist.
+    // Then the text of the child objects is changed. If the order list contains less items than before the content of the last objects is replaced by ""
     public void updateList()
     {
         // Create a list of strings from the order items
@@ -91,7 +84,6 @@ public class ViewList_Script : MonoBehaviour
             // "delete" unused table objects by erasing the text inside
             else
             {
-                Debug.Log(i);
                 transform.GetChild(i).GetComponentInChildren<UnityEngine.UI.Text>().text = "";
             }
             
